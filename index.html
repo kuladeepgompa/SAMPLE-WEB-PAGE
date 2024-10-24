@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDG 14: Life Below Water</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #f0faff;
+        background-color: #0d3b66;
+      }
+
+      .navbar {
+        background-color: #1b4965;
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        color: #f0faff;
+        font-size: 1.5rem;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: #f0faff;
+        text-decoration: none;
+        transition: color 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-links a:hover {
+        color: #82c0cc;
+      }
+
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #f0faff;
+        font-size: 1.5rem;
+      }
+
+      section {
+        padding: 5rem 1rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      #home {
+        background:
+          linear-gradient(rgba(0, 119, 190, 0.8), rgba(0, 119, 190, 0.8)),
+          url("https://www.example.com/hero-image.jpg") no-repeat center center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: #f0faff;
+      }
+
+      .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      #introduction {
+        background-color: #1b4965;
+      }
+
+      #introduction p {
+        color: #f0faff;
+      }
+
+      .facts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .fact-card {
+        background-color: #062c43;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #challenges {
+        background-color: #1b4965;
+      }
+
+      .challenges-list {
+        list-style: none;
+      }
+
+      .challenges-list li {
+        background-color: #062c43;
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .targets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .target-card {
+        background-color: #82c0cc;
+        padding: 1.5rem;
+        border-radius: 10px;
+        color: #0d3b66;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #actions {
+        background-color: #1b4965;
+      }
+
+      .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .story-card {
+        background-color: #062c43;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        color: #f0faff;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .team-card {
+        background: #062c43;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .team-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .team-info {
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .team-info h3 {
+        color: #f0faff;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-header h2 {
+        color: #f0faff;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1b4965;
+        color: #f0faff;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      footer a {
+        color: #82c0cc;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: #1b4965;
+          padding: 1rem;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1.2rem;
+        }
+
+        .section-header h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-content">
+        <a href="#home" class="logo">SDG 14</a>
+        <button class="hamburger">☰</button>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#introduction">Introduction</a>
+          <a href="#facts">Key Facts</a>
+          <a href="#challenges">Challenges</a>
+          <a href="#targets">Targets</a>
+          <a href="#actions">Actions</a>
+          <a href="#success">Success Stories</a>
+          <a href="#team">Team</a>
+        </div>
+      </div>
+    </nav>
+
+    <section id="home">
+      <div class="hero-content">
+        <h1>SDG 14: Life Below Water</h1>
+        <p>
+          Conserve and sustainably use the oceans, seas, and marine resources
+          for sustainable development
+        </p>
+      </div>
+    </section>
+
+    <section id="introduction">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2>Introduction</h2>
+        </div>
+        <p>
+          The ocean drives global systems that make the Earth habitable for
+          humankind. Our rainwater, drinking water, weather, climate,
+          coastlines, much of our food, and even the oxygen in the air we
+          breathe are all ultimately provided and regulated by the sea. Despite
+          this, oceans are under significant threat due to human activities.
+        </p>
+        <p>
+          From pollution to overfishing and climate change, the challenges
+          facing our oceans are immense, but so are the opportunities to protect
+          and restore them. The Sustainable Development Goal 14 (SDG 14) aims to
+          "Conserve and sustainably use the oceans, seas and marine resources
+          for sustainable development."
+        </p>
+        <img
+          src="https://www.example.com/introduction-image.jpg"
+          alt="Oceanic ecosystem"
+          style="width: 100%; border-radius: 10px; margin-top: 2rem"
+        />
+      </div>
+    </section>
+
+    <section id="facts">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2>Key Facts</h2>
+        </div>
+        <div class="facts-grid">
+          <div class="fact-card">
+            <h3>Fact 1</h3>
+            <p>
+              Oceans cover more than 70% of the Earth’s surface, and are
+              critical to regulating the climate, absorbing CO2, and providing
+              resources for life on Earth.
+            </p>
+          </div>
+          <div class="fact-card">
+            <h3>Fact 2</h3>
+            <p>
+              Over 3 billion people depend on marine and coastal biodiversity
+              for their livelihoods, with the fishing industry alone employing
+              millions globally.
+            </p>
+          </div>
+          <div class="fact-card">
+            <h3>Fact 3</h3>
+            <p>
+              Oceans absorb about 30% of the carbon dioxide produced by humans,
+              buffering the impacts of global warming, but this also contributes
+              to ocean acidification, threatening marine ecosystems.
+            </p>
+          </div>
+          <div class="fact-card">
+            <h3>Fact 4</h3>
+            <p>
+              More than 8 million tons of plastic enter the oceans every year,
+              leading to severe consequences for marine life, including
+              entanglement, ingestion, and toxic chemical pollution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenges">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2>Challenges</h2>
+        </div>
+        <ul class="challenges-list">
+          <li>
+            Pollution, particularly from plastics and chemicals, severely
+            impacts marine life and ecosystems. Microplastics have been found in
+            the deepest parts of the ocean, affecting even the smallest
+            organisms at the base of the marine food chain.
+          </li>
+          <li>
+            Overfishing leads to the depletion of fish stocks and disrupts
+            marine biodiversity. About 33% of global fish stocks are
+            overexploited, pushing some species to the brink of extinction.
+          </li>
+          <li>
+            Climate change causes ocean acidification, coral bleaching, and
+            rising sea levels. Coral reefs, which support about 25% of all
+            marine species, are particularly vulnerable, with more than half
+            already experiencing bleaching.
+          </li>
+          <li>
+            Destructive fishing practices such as bottom trawling and the use of
+            explosives not only deplete fish populations but also destroy
+            essential marine habitats like coral reefs and seagrass beds.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="targets">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2>Targets</h2>
+        </div>
+        <div class="targets-grid">
+          <div class="target-card">
+            <h3>Target 14.1</h3>
+            <p>
+              By 2025, prevent and significantly reduce marine pollution of all
+              kinds, particularly from land-based activities, including marine
+              debris, nutrient pollution, and chemical runoff.
+            </p>
+          </div>
+          <div class="target-card">
+            <h3>Target 14.2</h3>
+            <p>
+              By 2020, sustainably manage and protect marine and coastal
+              ecosystems to avoid significant adverse impacts, including by
+              strengthening resilience and restoring degraded ecosystems.
+            </p>
+          </div>
+          <div class="target-card">
+            <h3>Target 14.3</h3>
+            <p>
+              Minimize and address the impacts of ocean acidification, including
+              through enhanced scientific cooperation at all levels.
+            </p>
+          </div>
+          <div class="target-card">
+            <h3>Target 14.5</h3>
+            <p>
+              By 2020, conserve at least 10% of coastal and marine areas,
+              consistent with national and international law and based on the
+              best available scientific information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="actions">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2>Actions</h2>
+        </div>
+        <p>
+          There are many actions we can take to support SDG 14, from individual
+          efforts to policy changes. Examples include:
+        </p>
+        <ul>
+          <li>
+            Reducing plastic use by opting for reusable items and participating
+            in local beach cleanup efforts to help prevent marine debris.
+          </li>
+          <li>
+            Supporting sustainable seafood consumption by choosing certified
+            products that follow eco-friendly fishing practices.
+          </li>
+          <li>
+            Advocating for stronger ocean protection laws and international
+            agreements, such as the banning of harmful fishing subsidies that
+            contribute to overfishing.
+          </li>
+          <li>
+            Backing research and innovation aimed at creating solutions for
+            marine conservation, such as biodegradable materials and marine
+            habitat restoration techniques.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="success">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2>Success Stories</h2>
+        </div>
+        <div class="stories-grid">
+          <div class="story-card">
+            <h3>Story 1: The Great Barrier Reef</h3>
+            <p>
+              Through coordinated conservation efforts, parts of the Great
+              Barrier Reef have seen a reduction in coral bleaching, and ongoing
+              restoration programs are bringing back marine biodiversity in
+              several areas.
+            </p>
+          </div>
+          <div class="story-card">
+            <h3>Story 2: Plastic Bans</h3>
+            <p>
+              Countries like Kenya, India, and the European Union have
+              implemented strict bans on single-use plastic bags, significantly
+              reducing plastic waste in both terrestrial and marine
+              environments. These bans have inspired other nations to follow
+              suit.
+            </p>
+          </div>
+          <div class="story-card">
+            <h3>Story 3: Marine Protected Areas (MPAs)</h3>
+            <p>
+              Global efforts to expand Marine Protected Areas have shown
+              positive results. Chile, for example, created one of the largest
+              MPAs in the world, preserving over 1 million square kilometers of
+              ocean territory.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2>Our Team</h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <img
+              src="https://www.example.com/team-member1.jpg"
+              alt="Team Member 1"
+            />
+            <div class="team-info">
+              <h3>Jane Doe</h3>
+              <p>Marine Biologist</p>
+              <p>
+                Jane specializes in coral reef restoration and has worked on
+                several successful projects to rehabilitate damaged reef
+                ecosystems in the Pacific.
+              </p>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://www.example.com/team-member2.jpg"
+              alt="Team Member 2"
+            />
+            <div class="team-info">
+              <h3>John Smith</h3>
+              <p>Environmental Scientist</p>
+              <p>
+                John is an expert in marine pollution, with a focus on the
+                impacts of microplastics. His research has contributed to global
+                policy changes aimed at reducing plastic waste.
+              </p>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://www.example.com/team-member3.jpg"
+              alt="Team Member 3"
+            />
+            <div class="team-info">
+              <h3>Emily Clark</h3>
+              <p>Oceanographer</p>
+              <p>
+                Emily's work in ocean current modeling has provided critical
+                data on the dispersal patterns of pollutants, helping inform
+                better management of marine environments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Learn more about
+        <a
+          href="https://www.un.org/sustainabledevelopment/oceans/"
+          target="_blank"
+          >SDG 14</a
+        >
+      </p>
+    </footer>
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
